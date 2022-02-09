@@ -184,7 +184,8 @@ if (!class_exists('CS_REST_CurlTransport')) {
 
             $result = array(
     			'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
-    		    'response' => $result
+    		    'response' => $result,
+                'headers' => $headers,
             );
 
             curl_close($ch);
@@ -291,7 +292,8 @@ if (!class_exists('CS_REST_SocketTransport')) {
                 	
                 return array(
     			    'code' => $this->_get_status_code($headers),
-    			    'response' => trim($result)
+    			    'response' => trim($result),
+                    'headers' => $headers,
                 );
             }
         }

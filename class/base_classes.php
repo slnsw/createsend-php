@@ -30,9 +30,16 @@ if (!class_exists('CS_REST_Wrapper_Result')) {
          */
         var $http_status_code;
 
-        function __construct($response, $code) {
+        /**
+         * HTTP response headers.
+         * @var mixed
+         */
+        var $response_headers;
+
+        function __construct($response, $code, $headers = array()) {
             $this->response = $response;
             $this->http_status_code = $code;
+            $this->response_headers = $headers;
         }
 
         /**
@@ -311,7 +318,7 @@ if (!class_exists('CS_REST_Wrapper_Base')) {
                 $call_result['response'] = $this->_serialiser->deserialise($call_result['response']);
             }
 
-            return new CS_REST_Wrapper_Result($call_result['response'], $call_result['code']);
+            return new CS_REST_Wrapper_Result($call_result['response'], $call_result['code'], $call_result['headers']);
         }
     }
 }
